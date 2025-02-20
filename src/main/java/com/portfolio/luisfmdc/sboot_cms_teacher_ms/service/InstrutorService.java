@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Optional;
 
 @Service
 public class InstrutorService {
@@ -37,5 +38,14 @@ public class InstrutorService {
         instrutor.setAtivo(Boolean.FALSE);
         repository.save(instrutor);
         return ResponseEntity.noContent().build();
+    }
+
+    public ResponseEntity validarInstrutor(Integer idProfessor) {
+        Optional<Instrutor> instrutor = repository.findById(idProfessor);
+        if (instrutor.isPresent()) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

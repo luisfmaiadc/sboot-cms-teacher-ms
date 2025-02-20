@@ -31,4 +31,9 @@ public class InstrutorController {
     public ResponseEntity inativarInstrutor(@PathVariable Integer idProfessor) {
         return service.inativarInstrutor(idProfessor);
     }
+
+    @GetMapping("/validar/{idProfessor}")
+    public ResponseEntity validarProfessor(@PathVariable Integer idProfessor) {
+        return service.validarInstrutor(idProfessor);
+    }
 }
