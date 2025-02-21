@@ -1,5 +1,6 @@
 package com.portfolio.luisfmdc.sboot_cms_teacher_ms.domain;
 
+import com.portfolio.luisfmdc.sboot_cms_teacher_ms.infra.exception.InvalidRequestArgumentException;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,10 +38,16 @@ public class Instrutor {
     public void atualizarInstrutor(UpdateInstrutorRequest request) {
 
         if (request.nome() != null && !request.nome().isEmpty()) {
+            if (request.nome().length() < 3 || request.nome().length() > 50) {
+                throw new InvalidRequestArgumentException("O nome deve ter entre 3 e 50 caracteres");
+            }
             this.nome = request.nome();
         }
 
         if (request.sobrenome() != null && !request.sobrenome().isEmpty()) {
+            if (request.sobrenome().length() < 3 || request.sobrenome().length() > 50) {
+                throw new InvalidRequestArgumentException("O sobrenome deve ter entre 3 e 50 caracteres");
+            }
             this.sobrenome = request.sobrenome();
         }
 
@@ -49,6 +56,9 @@ public class Instrutor {
         }
 
         if (request.email() != null && !request.email().isEmpty()) {
+            if (request.email().length() < 10 || request.email().length() > 75) {
+                throw new InvalidRequestArgumentException("O e-mail deve ter entre 3 e 75 caracteres");
+            }
             this.email = request.email();
         }
 

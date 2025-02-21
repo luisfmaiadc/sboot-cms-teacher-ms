@@ -22,7 +22,7 @@ public class InstrutorService {
     public ResponseEntity<InstrutorResponse> cadastrarInstrutor(InstrutorRequest request, UriComponentsBuilder uriComponentsBuilder) {
         Instrutor instrutor = new Instrutor(request);
         repository.save(instrutor);
-        URI uri = uriComponentsBuilder.path("/cadastrar/{id}").buildAndExpand(instrutor.getAtivo()).toUri();
+        URI uri = uriComponentsBuilder.path("/cadastrar/{id}").buildAndExpand(instrutor.getId()).toUri();
         return ResponseEntity.created(uri).body(new InstrutorResponse(instrutor));
     }
 
